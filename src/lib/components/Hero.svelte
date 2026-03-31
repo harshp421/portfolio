@@ -19,7 +19,7 @@
 		popupBelow = y < 40; // if marker is in top 40%, show popup below
 	}
 
-	const VERTEX_SHADER = `void main() { gl_Position = vec4(position, 1.0); }`;
+	const VERTEX_SHADER = `attribute vec2 a_pos; void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }`;
 	const FRAGMENT_SHADER = `
 		precision highp float;
 		uniform float uTime; uniform vec2 uResolution; uniform vec2 uMouse;
@@ -79,27 +79,75 @@
 		reveal.from('.hero-minimap', { x: 20, opacity: 0, duration: 0.4, ease: 'power3.out' }, '-=0.3');
 		reveal.from('.hero-scroll', { opacity: 0, duration: 0.5 }, '-=0.1');
 
-		// THREE.JS
+		// RAW WEBGL — no Three.js needed for a fullscreen quad
 		if (!canvas) return;
-		let THREE: typeof import('three');
-		try { THREE = await import('three'); } catch { webglSupported = false; return; }
 		const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
 		if (!gl) { webglSupported = false; return; }
-		const r = new THREE.WebGLRenderer({ canvas, alpha: false });
-		const d = Math.min(window.devicePixelRatio, 1.5);
-		r.setPixelRatio(d); r.setSize(window.innerWidth, window.innerHeight);
-		const sc = new THREE.Scene(); const cam = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
-		const mat = new THREE.ShaderMaterial({ uniforms: { uTime:{value:0}, uResolution:{value:new THREE.Vector2(window.innerWidth*d,window.innerHeight*d)}, uMouse:{value:new THREE.Vector2(0.5,0.5)} }, vertexShader:VERTEX_SHADER, fragmentShader:FRAGMENT_SHADER });
-		sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2), mat));
-		const mt = new THREE.Vector2(0.5,0.5), mc = new THREE.Vector2(0.5,0.5);
-		const mm = (e:MouseEvent) => mt.set(e.clientX/window.innerWidth, 1-e.clientY/window.innerHeight);
-		window.addEventListener('mousemove', mm);
-		const rs = () => { r.setSize(window.innerWidth,window.innerHeight); mat.uniforms.uResolution.value.set(window.innerWidth*d,window.innerHeight*d); };
-		window.addEventListener('resize', rs);
-		const ck = new THREE.Clock(); let aid:number;
-		const anim = () => { aid=requestAnimationFrame(anim); if(document.hidden)return; mat.uniforms.uTime.value=ck.getElapsedTime(); mc.lerp(mt,0.04); mat.uniforms.uMouse.value.copy(mc); r.render(sc,cam); };
-		anim();
-		return () => { window.removeEventListener('mousemove',mm); window.removeEventListener('resize',rs); cancelAnimationFrame(aid); r.dispose(); };
+
+		const dpr = Math.min(window.devicePixelRatio, 1.5);
+
+		function compileShader(src: string, type: number) {
+			const s = gl!.createShader(type)!;
+			gl!.shaderSource(s, src);
+			gl!.compileShader(s);
+			return s;
+		}
+		const prog = gl.createProgram()!;
+		gl.attachShader(prog, compileShader(VERTEX_SHADER, gl.VERTEX_SHADER));
+		gl.attachShader(prog, compileShader(FRAGMENT_SHADER, gl.FRAGMENT_SHADER));
+		gl.linkProgram(prog);
+		gl.useProgram(prog);
+
+		// Fullscreen quad
+		const buf = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+		const aPos = gl.getAttribLocation(prog, 'a_pos');
+		gl.enableVertexAttribArray(aPos);
+		gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+		// Uniforms
+		const uTime = gl.getUniformLocation(prog, 'uTime');
+		const uRes = gl.getUniformLocation(prog, 'uResolution');
+		const uMouse = gl.getUniformLocation(prog, 'uMouse');
+
+		function resize() {
+			canvas!.width = window.innerWidth * dpr;
+			canvas!.height = window.innerHeight * dpr;
+			canvas!.style.width = window.innerWidth + 'px';
+			canvas!.style.height = window.innerHeight + 'px';
+			gl!.viewport(0, 0, canvas!.width, canvas!.height);
+			gl!.uniform2f(uRes, canvas!.width, canvas!.height);
+		}
+		resize();
+		window.addEventListener('resize', resize);
+
+		const mouseTarget = [0.5, 0.5];
+		const mouseCurrent = [0.5, 0.5];
+		const onMM = (e: MouseEvent) => {
+			mouseTarget[0] = e.clientX / window.innerWidth;
+			mouseTarget[1] = 1.0 - e.clientY / window.innerHeight;
+		};
+		window.addEventListener('mousemove', onMM);
+
+		const t0 = performance.now();
+		let aid: number;
+		const animate = () => {
+			aid = requestAnimationFrame(animate);
+			if (document.hidden) return;
+			mouseCurrent[0] += (mouseTarget[0] - mouseCurrent[0]) * 0.04;
+			mouseCurrent[1] += (mouseTarget[1] - mouseCurrent[1]) * 0.04;
+			gl!.uniform1f(uTime, (performance.now() - t0) * 0.001);
+			gl!.uniform2f(uMouse, mouseCurrent[0], mouseCurrent[1]);
+			gl!.drawArrays(gl!.TRIANGLE_STRIP, 0, 4);
+		};
+		animate();
+
+		return () => {
+			window.removeEventListener('resize', resize);
+			window.removeEventListener('mousemove', onMM);
+			cancelAnimationFrame(aid);
+		};
 	});
 </script>
 
