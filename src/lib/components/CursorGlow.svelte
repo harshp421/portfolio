@@ -23,12 +23,12 @@
 {#if visible}
 	<div
 		class="pointer-events-none fixed inset-0 z-40 transition-opacity duration-300"
-		style="opacity: 0.12;"
+		style="opacity: 0.15;"
 		aria-hidden="true"
 	>
 		<div
 			class="absolute h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-			style="left: {x}px; top: {y}px; background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.06) 40%, transparent 70%);"
+			style="left: {x}px; top: {y}px; background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(79, 70, 229, 0.04) 40%, transparent 70%);"
 		></div>
 	</div>
 {/if}

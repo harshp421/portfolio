@@ -3,17 +3,18 @@
 
 	let { project }: { project: Project } = $props();
 
-	let card: HTMLElement;
+	let card: HTMLElement | undefined = $state();
 	let rx = $state(0);
 	let ry = $state(0);
 	let transitioning = $state(false);
 
 	function handleMouseMove(e: MouseEvent) {
+		if (!card) return;
 		const rect = card.getBoundingClientRect();
 		const x = (e.clientX - rect.left) / rect.width;
 		const y = (e.clientY - rect.top) / rect.height;
-		rx = (y - 0.5) * -10;
-		ry = (x - 0.5) * 10;
+		rx = (y - 0.5) * -8;
+		ry = (x - 0.5) * 8;
 		transitioning = false;
 	}
 
@@ -26,7 +27,7 @@
 
 <div
 	bind:this={card}
-	class="project-card glass group cursor-default rounded-2xl p-6 transition-colors hover:bg-white/[0.04]"
+	class="project-card sl-panel glow-border-hover group cursor-default rounded-2xl p-6"
 	style="transform: perspective(600px) rotateX({rx}deg) rotateY({ry}deg); {transitioning
 		? 'transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);'
 		: ''}"
@@ -37,13 +38,15 @@
 	<!-- Header -->
 	<div class="flex items-start justify-between">
 		<div>
-			<h3 class="text-xl font-semibold text-zinc-100 transition-colors group-hover:text-white">
+			<h3
+				class="text-xl font-semibold text-slate-100 transition-colors group-hover:text-indigo-300"
+			>
 				{project.title}
 			</h3>
-			<p class="mt-0.5 text-sm text-zinc-500">
+			<p class="mt-0.5 text-sm text-slate-500">
 				{project.subtitle}
 				{#if project.company}
-					<span class="text-zinc-600">· {project.company}</span>
+					<span class="text-indigo-500/40">// {project.company}</span>
 				{/if}
 			</p>
 		</div>
@@ -55,10 +58,16 @@
 					href={project.liveUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="rounded-lg p-2 text-zinc-500 transition-colors hover:bg-white/[0.06] hover:text-zinc-300"
+					class="rounded-lg p-2 text-slate-600 transition-all hover:bg-indigo-500/10 hover:text-indigo-400"
 					aria-label="View live site"
 				>
-					<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+					<svg
+						class="h-4 w-4"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="1.5"
+					>
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -72,7 +81,7 @@
 					href={project.githubUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="rounded-lg p-2 text-zinc-500 transition-colors hover:bg-white/[0.06] hover:text-zinc-300"
+					class="rounded-lg p-2 text-slate-600 transition-all hover:bg-indigo-500/10 hover:text-indigo-400"
 					aria-label="View source"
 				>
 					<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -88,8 +97,8 @@
 	<!-- Description -->
 	<ul class="mt-4 space-y-1.5">
 		{#each project.description as item}
-			<li class="flex gap-3 text-sm leading-relaxed text-zinc-400">
-				<span class="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-zinc-600"></span>
+			<li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+				<span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-indigo-500/30"></span>
 				{item}
 			</li>
 		{/each}
@@ -99,7 +108,7 @@
 	<div class="mt-5 flex flex-wrap gap-1.5">
 		{#each project.stack as tech}
 			<span
-				class="rounded-full bg-zinc-800/60 px-2.5 py-0.5 text-xs text-zinc-500 transition-colors group-hover:text-zinc-400"
+				class="rounded-md border border-indigo-500/10 bg-indigo-500/5 px-2.5 py-0.5 text-xs text-indigo-400/50 transition-colors group-hover:text-indigo-400/70"
 			>
 				{tech}
 			</span>

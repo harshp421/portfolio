@@ -30,7 +30,7 @@
 
 <section id="projects" class="py-24 md:py-32">
 	<div class="mx-auto max-w-6xl px-6">
-		<SectionHeading label="Projects" title="What I've built" />
+		<SectionHeading label="Quests" title="What I've built" />
 
 		<div class="grid gap-6 md:grid-cols-2">
 			{#each resume.projects as project}

@@ -29,18 +29,21 @@
 
 <section id="skills" class="py-24 md:py-32">
 	<div class="mx-auto max-w-6xl px-6">
-		<SectionHeading label="Skills" title="What I work with" />
+		<SectionHeading label="Arsenal" title="What I work with" />
 
 		<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 			{#each resume.skills as group}
 				<div class="skill-group">
-					<h3 class="mb-4 text-sm font-medium uppercase tracking-wider text-zinc-500">
+					<h3
+						class="mb-4 flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-indigo-400/60"
+					>
+						<span class="h-px w-4 bg-indigo-500/30"></span>
 						{group.category}
 					</h3>
 					<div class="flex flex-wrap gap-2">
 						{#each group.items as skill}
 							<span
-								class="rounded-full border border-zinc-800 bg-zinc-900/50 px-3.5 py-1.5 text-sm text-zinc-300 transition-colors hover:border-zinc-600 hover:text-zinc-100"
+								class="rounded-md border border-indigo-500/10 bg-indigo-500/[0.03] px-3.5 py-1.5 text-sm text-slate-400 transition-all hover:border-indigo-500/25 hover:bg-indigo-500/[0.06] hover:text-indigo-300"
 							>
 								{skill}
 							</span>
