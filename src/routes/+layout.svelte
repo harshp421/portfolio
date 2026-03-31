@@ -4,6 +4,8 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import NoiseOverlay from '$lib/components/NoiseOverlay.svelte';
 	import CursorGlow from '$lib/components/CursorGlow.svelte';
+	import SystemNotification from '$lib/components/SystemNotification.svelte';
+	import DailyQuestTracker from '$lib/components/DailyQuestTracker.svelte';
 	import { setLenis } from '$lib/utils/scroll';
 
 	let { children } = $props();
@@ -19,29 +21,25 @@
 			easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 			touchMultiplier: 2
 		});
-
 		setLenis(lenis);
 
 		lenis.on('scroll', ScrollTrigger.update);
-
-		gsap.ticker.add((time) => {
-			lenis.raf(time * 1000);
-		});
+		gsap.ticker.add((time) => lenis.raf(time * 1000));
 		gsap.ticker.lagSmoothing(0);
 
-		return () => {
-			lenis.destroy();
-		};
+		return () => lenis.destroy();
 	});
 </script>
 
 <svelte:head>
-	<title>Harsh Parmar — Full-Stack Developer</title>
+	<title>Harsh Parmar — A-Rank Full-Stack Developer</title>
 </svelte:head>
 
 <NoiseOverlay />
 <CursorGlow />
 <Navigation />
+<SystemNotification />
+<DailyQuestTracker />
 
 <main>
 	{@render children()}

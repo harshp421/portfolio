@@ -1,153 +1,322 @@
-import type { ResumeData } from '$lib/types';
+import type { ResumeData } from "$lib/types";
 
 export const resume: ResumeData = {
-	name: 'Harsh Parmar',
-	title: 'Full-Stack Developer',
-	location: 'Ahmedabad, India',
-	email: 'harshparmar0421@gmail.com',
-	phone: '+91-9537128189',
-	github: 'https://github.com/harshp421',
-	summary:
-		"I'm a Full Stack Developer with 1.5+ years of experience shipping production apps — from a live urban-planning platform to an org-wide component library. I thrive on turning complex ideas into elegant, performant web applications.",
-	skills: [
-		{
-			category: 'Languages',
-			items: ['JavaScript (ES6+)', 'TypeScript', 'HTML5', 'CSS3']
-		},
-		{
-			category: 'Frameworks',
-			items: ['React.js', 'Next.js', 'SvelteKit', 'Angular', 'Ionic', 'Node.js', 'Express.js']
-		},
-		{
-			category: 'Styling',
-			items: ['Tailwind CSS', 'shadcn/ui', 'Material UI', 'Bootstrap']
-		},
-		{
-			category: 'Databases',
-			items: ['MongoDB', 'Firebase', 'BigQuery']
-		},
-		{
-			category: 'Cloud & Maps',
-			items: ['Google Cloud Platform', 'Google Maps API', 'Mappls Map', 'OpenStreetMap']
-		},
-		{
-			category: 'Tools',
-			items: ['Git', 'GitHub', 'REST APIs', 'Baserow', 'RevenueCat', 'Razorpay', 'OTPless']
-		}
-	],
-	experience: [
-		{
-			role: 'Full Stack Developer',
-			company: 'Oizom',
-			location: 'Ahmedabad',
-			period: 'Jan 2025 — Present',
-			description: [
-				'Built and own a full-stack internal admin tool used daily org-wide for device lifecycle, inventory, configurations, assembly, and IoT sensor management.',
-				'Handled complete front-end architecture and contributed to back-end API development (Node.js, Express.js).',
-				'Developed the Oizom Design System — 25+ reusable components in SvelteKit, TypeScript, Tailwind CSS, and shadcn/ui — adopted across all products.',
-				'Worked cross-functionally with product, design, hardware, and operations teams to align requirements and deliver features.'
-			],
-			stack: ['SvelteKit', 'TypeScript', 'Node.js', 'Express.js', 'Tailwind CSS', 'shadcn/ui']
-		},
-		{
-			role: 'Software Developer Intern',
-			company: 'Oizom',
-			location: 'Ahmedabad',
-			period: 'May 2024 — Dec 2024',
-			description: [
-				'Worked on multiple innovation projects for internal and client use across the organization.',
-				'Built LawFinder — a legal data visualization tool mapping IPC to BNS, IEA to BSA, and CRPC to BNSS with real-time updates via Indiankanoon RSS feed.',
-				'Developed the AiRowl informational website, presenting product features and air quality data from Oizom\'s AiRowl device.',
-				'Communicated directly with clients for requirement gathering and delivered feedback-driven iterations.'
-			],
-			stack: [
-				'SvelteKit',
-				'Angular',
-				'Ionic',
-				'Firebase',
-				'GCP',
-				'Node.js',
-				'Tailwind CSS',
-				'TypeScript'
-			]
-		},
-		{
-			role: 'Front-End Developer Intern',
-			company: 'WebOccult Technologies',
-			location: 'Ahmedabad',
-			period: 'Jan 2023 — Jun 2023',
-			description: [
-				'Developed and maintained reusable React components, improving code efficiency and long-term maintainability.',
-				'Built responsive web pages using HTML5, CSS3, Bootstrap, and JavaScript aligned with design specifications.',
-				'Strengthened JavaScript fundamentals through delivery of small, self-contained functional projects.'
-			],
-			stack: ['React.js', 'HTML5', 'CSS3', 'Bootstrap', 'JavaScript']
-		}
-	],
-	projects: [
-		{
-			title: 'TownPlanMap',
-			subtitle: 'Future Cities on Google Maps',
-			description: [
-				'Production platform visualizing India\'s proposed town planning schemes and industrial zones on an interactive map.',
-				'Cut map/API infrastructure costs from ₹5,000/day to ₹0 by migrating from MapMyIndia to an open-source alternative.',
-				'Led front-end redevelopment from SvelteKit to Angular + Ionic for cross-platform support.',
-				'Integrated Razorpay payment gateway and RevenueCat for in-app purchases.'
-			],
-			stack: ['SvelteKit', 'Angular', 'Ionic', 'Firebase', 'Google Maps', 'Razorpay', 'TypeScript'],
-			liveUrl: 'https://townplanmap.com',
-			company: 'Oizom'
-		},
-		{
-			title: 'Internal Admin Tool',
-			subtitle: 'Device & Inventory Management',
-			description: [
-				'Full-stack internal admin tool adopted org-wide for managing inventory, devices, configurations, parts, assemblies, and sensor metadata.',
-				'Owned complete front-end architecture and contributed to back-end API development.',
-				'Improved operational efficiency by centralizing device management into a single unified interface.'
-			],
-			stack: ['SvelteKit', 'Node.js', 'Express.js', 'TypeScript', 'Tailwind CSS'],
-			company: 'Oizom'
-		},
-		{
-			title: 'Oizom Design System',
-			subtitle: 'Reusable Component Library',
-			description: [
-				'Scalable component library with 25+ components in SvelteKit using Tailwind CSS, shadcn/ui, and TypeScript.',
-				'Standardized UI across all Oizom products.',
-				'Collaborated closely with the design team to translate Figma designs into reusable, accessible components.'
-			],
-			stack: ['SvelteKit', 'TypeScript', 'Tailwind CSS', 'shadcn/ui'],
-			company: 'Oizom'
-		},
-		{
-			title: 'LawFinder',
-			subtitle: 'Legal Data Visualization',
-			description: [
-				'Legal data visualization tool mapping IPC to BNS, IEA to BSA, and CRPC to BNSS by sections and chapters.',
-				'Real-time updates via Indiankanoon RSS feed integration.'
-			],
-			stack: ['React.js', 'Next.js', 'Tailwind CSS', 'shadcn/ui'],
-			company: 'Oizom'
-		}
-	],
-	education: [
-		{
-			institution: 'KS School of Business Management, Ahmedabad',
-			degree: 'M.Sc. (CA & IT)',
-			period: '2023 — 2025',
-			gpa: '3.33 / 5.00'
-		},
-		{
-			institution: 'KS School of Business Management, Ahmedabad',
-			degree: 'B.Sc. (CA & IT)',
-			period: '2020 — 2023',
-			gpa: '3.00 / 5.00'
-		}
-	],
-	socialLinks: [
-		{ name: 'GitHub', url: 'https://github.com/harshp421' },
-		{ name: 'Email', url: 'mailto:harshparmar0421@gmail.com' },
-		{ name: 'Phone', url: 'tel:+919537128189' }
-	]
+  name: "Harsh Parmar",
+  title: "Full-Stack Developer",
+  location: "Ahmedabad, India",
+  email: "harshparmar0421@gmail.com",
+  phone: "+91-9537128189",
+  github: "https://github.com/harshp421",
+  summary:
+    "Full Stack Developer with 1.5+ years of experience shipping production apps — from a live urban-planning platform to an org-wide component library.",
+  hunterLevel: 45,
+  hunterExp: 87,
+  hunterRank: "A",
+  hunterRankProgress: 85,
+  stats: [
+    {
+      name: "AGILITY",
+      label: "Frontend",
+      value: 92,
+      color: "from-[#0066ff] to-[#00d4ff]",
+    },
+    {
+      name: "STRENGTH",
+      label: "Backend",
+      value: 78,
+      color: "from-red-500 to-orange-400",
+    },
+    {
+      name: "INTELLIGENCE",
+      label: "Architecture",
+      value: 75,
+      color: "from-purple-500 to-indigo-400",
+    },
+    {
+      name: "ENDURANCE",
+      label: "Database & Cloud",
+      value: 70,
+      color: "from-emerald-500 to-teal-400",
+    },
+    {
+      name: "CHARISMA",
+      label: "Collaboration",
+      value: 88,
+      color: "from-amber-400 to-yellow-300",
+    },
+  ],
+  individualSkills: [
+    { name: "SvelteKit", level: 95, status: "mastered" },
+    { name: "TypeScript", level: 92, status: "mastered" },
+    { name: "Tailwind CSS", level: 93, status: "mastered" },
+    { name: "React.js", level: 88, status: "mastered" },
+    { name: "JavaScript", level: 92, status: "mastered" },
+    { name: "shadcn/ui", level: 90, status: "mastered" },
+    { name: "Next.js", level: 82, status: "mastered" },
+    { name: "Node.js", level: 80, status: "active" },
+    { name: "Google Maps", level: 85, status: "mastered" },
+    { name: "Git", level: 85, status: "mastered" },
+    { name: "Angular", level: 78, status: "active" },
+    { name: "Express.js", level: 78, status: "active" },
+    { name: "Firebase", level: 75, status: "active" },
+    { name: "MongoDB", level: 70, status: "active" },
+    { name: "Ionic", level: 70, status: "active" },
+    { name: "GCP", level: 68, status: "learning" },
+    { name: "Design Systems", level: 88, status: "active" },
+    { name: "Component Arch.", level: 85, status: "active" },
+  ],
+  skills: [
+    {
+      category: "Languages",
+      items: ["JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3"],
+    },
+    {
+      category: "Frameworks",
+      items: [
+        "React.js",
+        "Next.js",
+        "SvelteKit",
+        "Angular",
+        "Ionic",
+        "Node.js",
+        "Express.js",
+      ],
+    },
+    {
+      category: "Styling",
+      items: ["Tailwind CSS", "shadcn/ui", "Material UI", "Bootstrap"],
+    },
+    { category: "Databases", items: ["MongoDB", "Firebase", "BigQuery"] },
+    {
+      category: "Cloud & Maps",
+      items: [
+        "Google Cloud Platform",
+        "Google Maps API",
+        "Mappls Map",
+        "OpenStreetMap",
+      ],
+    },
+    {
+      category: "Tools",
+      items: [
+        "Git",
+        "GitHub",
+        "REST APIs",
+        "Baserow",
+        "RevenueCat",
+        "Razorpay",
+        "OTPless",
+      ],
+    },
+  ],
+  experience: [
+    {
+      role: "Full Stack Developer",
+      company: "Oizom",
+      location: "Ahmedabad",
+      period: "Jan 2025 — Present",
+      duration: "1yr+",
+      rank: "S",
+      description: [
+        "Built and own a full-stack internal admin tool used daily org-wide for device lifecycle, inventory, and IoT sensor management.",
+        "Handled complete front-end architecture and contributed to back-end API development (Node.js, Express.js).",
+        "Developed the Oizom Design System — 25+ reusable components adopted across all products.",
+        "Worked cross-functionally with product, design, hardware, and operations teams.",
+      ],
+      stack: [
+        "SvelteKit",
+        "TypeScript",
+        "Node.js",
+        "Express.js",
+        "Tailwind CSS",
+        "shadcn/ui",
+      ],
+    },
+    {
+      role: "Software Developer Intern",
+      company: "Oizom",
+      location: "Ahmedabad",
+      period: "May 2024 — Dec 2024",
+      duration: "8 months",
+      rank: "B",
+      description: [
+        "Worked on multiple innovation projects for internal and client use.",
+        "Built LawFinder — a legal data visualization tool with real-time Indiankanoon RSS updates.",
+        "Developed the AiRowl informational website for Oizom's air quality device.",
+        "Communicated directly with clients for requirement gathering.",
+      ],
+      stack: [
+        "SvelteKit",
+        "Angular",
+        "Ionic",
+        "Firebase",
+        "GCP",
+        "Node.js",
+        "TypeScript",
+      ],
+    },
+    {
+      role: "Front-End Developer Intern",
+      company: "WebOccult Technologies",
+      location: "Ahmedabad",
+      period: "Jan 2023 — Jun 2023",
+      duration: "6 months",
+      rank: "E",
+      description: [
+        "Developed and maintained reusable React components.",
+        "Built responsive web pages using HTML5, CSS3, Bootstrap, and JavaScript.",
+        "Strengthened JavaScript fundamentals through self-contained functional projects.",
+      ],
+      stack: ["React.js", "HTML5", "CSS3", "Bootstrap", "JavaScript"],
+    },
+  ],
+  projects: [
+    {
+      title: "TownPlanMap",
+      subtitle: "Future Cities on Google Maps",
+      rank: "A",
+      status: "completed",
+      description: [
+        "Production platform visualizing India's town planning schemes on an interactive map.",
+        "Cut map/API costs from ₹1,25,000/month to ₹0 by migrating to open-source.",
+        "Led front-end redevelopment from SvelteKit to Angular + Ionic.",
+        "Integrated Razorpay and RevenueCat for payments.",
+      ],
+      stack: [
+        "SvelteKit",
+        "Angular",
+        "Ionic",
+        "Firebase",
+        "Google Maps",
+        "Razorpay",
+      ],
+      liveUrl: "https://townplanmap.com",
+      company: "Oizom",
+    },
+    {
+      title: "Internal Admin Tool",
+      subtitle: "Device & Inventory Management",
+      rank: "A",
+      status: "completed",
+      description: [
+        "Full-stack admin tool adopted org-wide for managing inventory, devices, and sensor metadata.",
+        "Owned complete front-end architecture and back-end API development.",
+        "Centralized device management into a single unified interface.",
+      ],
+      stack: [
+        "SvelteKit",
+        "Node.js",
+        "Express.js",
+        "TypeScript",
+        "Tailwind CSS",
+      ],
+      company: "Oizom",
+    },
+    {
+      title: "Oizom Design System",
+      subtitle: "Reusable Component Library",
+      rank: "B",
+      status: "completed",
+      description: [
+        "25+ components in SvelteKit with Tailwind CSS, shadcn/ui, and TypeScript.",
+        "Standardized UI across all Oizom products.",
+        "Translated Figma designs into reusable, accessible components.",
+      ],
+      stack: ["SvelteKit", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+      company: "Oizom",
+    },
+    {
+      title: "LawFinder",
+      subtitle: "Legal Data Visualization",
+      rank: "C",
+      status: "completed",
+      description: [
+        "Legal data visualization mapping IPC to BNS, IEA to BSA, CRPC to BNSS.",
+        "Real-time updates via Indiankanoon RSS feed.",
+      ],
+      stack: ["React.js", "Next.js", "Tailwind CSS", "shadcn/ui"],
+      company: "Oizom",
+    },
+    {
+      title: "Nnuikit",
+      subtitle: "UI Component Library",
+      rank: "S",
+      status: "upcoming",
+      launchDate: "2026-04-14T00:00:00",
+      description: [
+        "50+ Accessible Components for SvelteKit 5.",
+        "Native Tailwind CSS Integration.",
+        "Dark/Light Theme Support.",
+        "Fully Typed with TypeScript.",
+      ],
+      stack: ["SvelteKit 5", "TypeScript", "Tailwind CSS"],
+    },
+  ],
+  education: [
+    {
+      institution: "KS School of Business Management",
+      degree: "M.Sc. (CA & IT)",
+      period: "2023 — 2025",
+      gpa: "3.33 / 5.00",
+    },
+    {
+      institution: "KS School of Business Management",
+      degree: "B.Sc. (CA & IT)",
+      period: "2020 — 2023",
+      gpa: "3.00 / 5.00",
+    },
+  ],
+  socialLinks: [
+    { name: "GitHub", url: "https://github.com/harshp421" },
+    { name: "Email", url: "mailto:harshparmar0421@gmail.com" },
+    { name: "Phone", url: "tel:+919537128189" },
+  ],
 };
+
+export const MAP_MARKERS = [
+  {
+    id: "townplanmap",
+    x: 22,
+    y: 30,
+    label: "TownPlanMap",
+    zone: "Northern Highlands",
+    type: "completed" as const,
+    projectIndex: 0,
+  },
+  {
+    id: "admin",
+    x: 60,
+    y: 26,
+    label: "Admin Tool",
+    zone: "Iron Fortress",
+    type: "completed" as const,
+    projectIndex: 1,
+  },
+  {
+    id: "designsys",
+    x: 38,
+    y: 50,
+    label: "Design System",
+    zone: "Crystal Valley",
+    type: "completed" as const,
+    projectIndex: 2,
+  },
+  {
+    id: "lawfinder",
+    x: 18,
+    y: 66,
+    label: "LawFinder",
+    zone: "Ancient Archives",
+    type: "completed" as const,
+    projectIndex: 3,
+  },
+  {
+    id: "nnuikit",
+    x: 74,
+    y: 60,
+    label: "Nnuikit",
+    zone: "Shadow Gate",
+    type: "s-rank" as const,
+    projectIndex: 4,
+  },
+];
