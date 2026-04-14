@@ -17,8 +17,8 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			handleHttpError({ path, message }) {
-				// Profile image may not exist yet — user adds their own
-				if (path === '/profile.jpg') return;
+				// Images may not exist yet — user adds their own
+				if (path === '/profile.jpg' || path === '/user.png' || path.startsWith('/projects/')) return;
 				throw new Error(message);
 			}
 		}

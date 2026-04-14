@@ -4,42 +4,42 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import NoiseOverlay from '$lib/components/NoiseOverlay.svelte';
 	import CursorGlow from '$lib/components/CursorGlow.svelte';
-	import SystemNotification from '$lib/components/SystemNotification.svelte';
-	import DailyQuestTracker from '$lib/components/DailyQuestTracker.svelte';
 	import { setLenis } from '$lib/utils/scroll';
 
 	let { children } = $props();
 
-	onMount(async () => {
-		const Lenis = (await import('lenis')).default;
-		const { gsap } = await import('gsap');
-		const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-		gsap.registerPlugin(ScrollTrigger);
+	onMount(() => {
+		let lenis: InstanceType<typeof import('lenis').default> | undefined;
 
-		const lenis = new Lenis({
-			duration: 1.2,
-			easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-			touchMultiplier: 2
-		});
-		setLenis(lenis);
+		(async () => {
+			const Lenis = (await import('lenis')).default;
+			const { gsap } = await import('gsap');
+			const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+			gsap.registerPlugin(ScrollTrigger);
 
-		lenis.on('scroll', ScrollTrigger.update);
-		gsap.ticker.add((time) => lenis.raf(time * 1000));
-		gsap.ticker.lagSmoothing(0);
+			lenis = new Lenis({
+				duration: 1.2,
+				easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				touchMultiplier: 2
+			});
+			setLenis(lenis);
 
-		return () => lenis.destroy();
+			lenis.on('scroll', ScrollTrigger.update);
+			gsap.ticker.add((time) => lenis!.raf(time * 1000));
+			gsap.ticker.lagSmoothing(0);
+		})();
+
+		return () => lenis?.destroy();
 	});
 </script>
 
 <svelte:head>
-	<title>Harsh Parmar — A-Rank Full-Stack Developer</title>
+	<title>Harsh Parmar — Full-Stack Developer</title>
 </svelte:head>
 
 <NoiseOverlay />
 <CursorGlow />
 <Navigation />
-<SystemNotification />
-<DailyQuestTracker />
 
 <main>
 	{@render children()}

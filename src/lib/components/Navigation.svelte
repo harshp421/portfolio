@@ -4,9 +4,9 @@
 	import { scrollTo } from '$lib/utils/scroll';
 
 	const navLinks = [
-		{ label: 'Status', href: '#skills' },
-		{ label: 'Dungeons', href: '#experience' },
-		{ label: 'Quests', href: '#projects' },
+		{ label: 'About', href: '#about' },
+		{ label: 'Work', href: '#projects' },
+		{ label: 'Experience', href: '#experience' },
 		{ label: 'Contact', href: '#contact' }
 	];
 
@@ -35,38 +35,43 @@
 	});
 </script>
 
-<nav class="fixed top-0 right-0 left-0 z-50 transition-all duration-500 {scrolled ? 'sl-panel bg-void/80' : 'bg-transparent'}">
-	<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-		<button onclick={(e) => handleNav(e, '#hero')} class="font-mono text-sm font-bold text-slate-100 transition-colors hover:text-white">
-			{resume.name.split(' ')[0]}<span class="sl-glow text-system-blue">.</span>
+<nav
+	class="fixed top-0 right-0 left-0 z-50 transition-all duration-300 {scrolled
+		? 'glass border-b border-black/[0.04]'
+		: 'bg-transparent'}"
+>
+	<div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+		<button onclick={(e) => handleNav(e, '#hero')} class="text-sm font-semibold text-neutral-900 transition-colors hover:text-black">
+			{resume.name.split(' ')[0]}<span class="text-neutral-300">.</span>
 		</button>
 
+		<!-- Desktop -->
 		<div class="hidden items-center gap-1 md:flex">
 			{#each navLinks as link}
 				<button
 					onclick={(e) => handleNav(e, link.href)}
-					class="relative rounded-md px-4 py-2 font-mono text-xs transition-all {activeSection === link.href.slice(1) ? 'text-system-blue' : 'text-slate-600 hover:text-slate-300'}"
+					class="rounded-full px-4 py-2 text-[13px] font-medium transition-all {activeSection === link.href.slice(1)
+						? 'bg-neutral-100 text-neutral-900'
+						: 'text-neutral-400 hover:text-neutral-600'}"
 				>
-					{#if activeSection === link.href.slice(1)}
-						<span class="absolute inset-0 rounded-md border border-system-blue/15 bg-system-blue/[0.06]"></span>
-					{/if}
-					<span class="relative">{link.label}</span>
+					{link.label}
 				</button>
 			{/each}
 		</div>
 
-		<button class="relative flex h-8 w-8 items-center justify-center md:hidden" onclick={() => (menuOpen = !menuOpen)} aria-label="Toggle menu">
-			<span class="absolute h-0.5 w-5 rounded bg-slate-100 transition-all duration-300 {menuOpen ? 'rotate-45' : '-translate-y-1.5'}"></span>
-			<span class="absolute h-0.5 w-5 rounded bg-slate-100 transition-all duration-300 {menuOpen ? 'opacity-0' : 'opacity-100'}"></span>
-			<span class="absolute h-0.5 w-5 rounded bg-slate-100 transition-all duration-300 {menuOpen ? '-rotate-45' : 'translate-y-1.5'}"></span>
+		<!-- Mobile hamburger -->
+		<button class="relative flex h-8 w-8 items-center justify-center md:hidden" onclick={() => (menuOpen = !menuOpen)} aria-label="Menu">
+			<span class="absolute h-[1.5px] w-4 rounded bg-neutral-800 transition-all duration-300 {menuOpen ? 'rotate-45' : '-translate-y-1'}"></span>
+			<span class="absolute h-[1.5px] w-4 rounded bg-neutral-800 transition-all duration-300 {menuOpen ? '-rotate-45' : 'translate-y-1'}"></span>
 		</button>
 	</div>
 
+	<!-- Mobile menu -->
 	{#if menuOpen}
-		<div class="sl-panel absolute inset-x-0 top-full md:hidden">
-			<div class="flex flex-col px-6 py-4">
-				{#each navLinks as link, i}
-					<button onclick={(e) => handleNav(e, link.href)} class="py-3 text-left font-mono text-sm text-slate-300 transition-colors hover:text-system-blue" style="animation: fadeUp 0.3s ease forwards; animation-delay: {i * 0.05}s; opacity: 0;">
+		<div class="glass border-t border-black/[0.04] md:hidden">
+			<div class="flex flex-col px-6 py-3">
+				{#each navLinks as link}
+					<button onclick={(e) => handleNav(e, link.href)} class="py-2.5 text-left text-sm text-neutral-500 transition-colors hover:text-neutral-900">
 						{link.label}
 					</button>
 				{/each}
@@ -74,7 +79,3 @@
 		</div>
 	{/if}
 </nav>
-
-<style>
-	@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-</style>
