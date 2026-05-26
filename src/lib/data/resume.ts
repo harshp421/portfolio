@@ -8,7 +8,7 @@ export const resume: ResumeData = {
   phone: "+91-9537128189",
   github: "https://github.com/harshp421",
   summary:
-    "Full Stack Developer with 1.5+ years of experience shipping production apps — from a live urban-planning platform to an org-wide component library.",
+    "Full Stack Developer with 2 years of experience shipping production apps — from a live urban-planning platform to an org-wide component library.",
   hunterLevel: 45,
   hunterExp: 87,
   hunterRank: "A",
@@ -172,6 +172,28 @@ export const resume: ResumeData = {
   ],
   projects: [
     {
+      title: "AI Gym Coach",
+      subtitle: "LLM-Powered Fitness Coaching PWA",
+      rank: "S",
+      status: "completed",
+      description: [
+        "Mobile-first PWA (React 19, TypeScript, Tailwind v4) with offline-first architecture, push notifications, optimistic UI updates, and skeleton loaders for workouts, body metrics, and meal photos.",
+        "Engineered an LLM coaching agent on the Groq API (LLaMA 3.3 70B) with tool calling and Zod-validated structured output — personalized workout plans, diet plans, and real-time conversational coaching.",
+        "Integrated the LLaMA 4 Scout vision model for meal-photo calorie estimation.",
+        "Express 5 backend with JWT/OAuth, Upstash Redis rate-limiting, and async workers.",
+      ],
+      stack: [
+        "React 19",
+        "TypeScript",
+        "Express 5",
+        "PostgreSQL",
+        "Redis",
+        "Groq",
+        "LLaMA 3.3 / LLaMA 4 Scout",
+      ],
+      liveUrl: "https://trainer-ai.vercel.app/",
+    },
+    {
       title: "TownPlanMap",
       subtitle: "Future Cities on Google Maps",
       rank: "A",
@@ -200,7 +222,7 @@ export const resume: ResumeData = {
       status: "completed",
       launchDate: "2026-04-14T00:00:00",
       description: [
-        "50+ Accessible Components for SvelteKit 5.",
+        "25+ Accessible Components for SvelteKit 5.",
         "Native Tailwind CSS Integration.",
         "Dark/Light Theme Support.",
         "Fully Typed with TypeScript.",
