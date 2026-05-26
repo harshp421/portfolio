@@ -1,6 +1,7 @@
 {
-	"recommendations": [
-		"svelte.svelte-vscode",
-		"bradlc.vscode-tailwindcss"
-	]
+    "recommendations": [
+        "myml.vscode-markdown-plantuml-preview",
+        "esbenp.prettier-vscode",
+        "jebbs.plantuml"
+    ]
 }
